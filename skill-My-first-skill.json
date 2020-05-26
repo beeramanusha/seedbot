@@ -1,0 +1,270 @@
+{
+  "intents": [
+    {
+      "intent": "cottonseeds",
+      "examples": [
+        {
+          "text": "bhakthi"
+        },
+        {
+          "text": "balwan"
+        },
+        {
+          "text": "raghav"
+        },
+        {
+          "text": "uttam"
+        },
+        {
+          "text": "malini"
+        },
+        {
+          "text": "kanak"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "orderseeds",
+      "examples": [
+        {
+          "text": "can i get seeds"
+        },
+        {
+          "text": "cotton seeds"
+        },
+        {
+          "text": "i need seeds"
+        },
+        {
+          "text": "i want to buy seeds"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "payment",
+      "examples": [
+        {
+          "text": "payment"
+        },
+        {
+          "text": "can i get receipt"
+        },
+        {
+          "text": "can i get bill"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "welcome",
+      "examples": [
+        {
+          "text": "hi"
+        },
+        {
+          "text": "hai"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hellothere!"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "seeds",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "cotton",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "cottonseeds",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "bhakthi",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "kanak",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "balwan",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "raghav",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "uttam",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "malini",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "cottonseeds",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "you can collect your seeds......"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1590459673895",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "Anything else"
+      },
+      "conditions": "@cottonseeds:bhakthi || @cottonseeds:kanak || @cottonseeds:balwan || @cottonseeds:raghav || @cottonseeds:uttam || @cottonseeds:malini",
+      "dialog_node": "node_9_1590462449533"
+    },
+    {
+      "type": "standard",
+      "title": "orderseeds",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "what type of seeds you want to order?"
+              },
+              {
+                "text": "what is the company of seeds you need?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#orderseeds",
+      "dialog_node": "node_6_1590459673895",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "payment done",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "you can pay your bill on online and get your payment bill"
+              },
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "thanks for visting our market"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#payment",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_6_1590459673895",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome to seedbot",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "hello welcome to raghava seeds marketing How can I help you?"
+              },
+              {
+                "text": "hi"
+              },
+              {
+                "text": "welcome to raghava seeds marketing"
+              },
+              {
+                "text": "hi"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
